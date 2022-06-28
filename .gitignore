@@ -1,2 +1,10 @@
 .idea
 test.aiml2.xml
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+package-lock.json
