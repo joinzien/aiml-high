@@ -100,7 +100,9 @@ var cleanDom = function(childNodes){
 
             // remove all nodes of type 'text' when they just contain '\r\n'. This indicates line break in the AIML file
             if(childNodes[i].nodeValue.match(/^\s*(\r)?\n\s*$/gi)){
-                childNodes[i].parentNode.removeChild(childNodes[i]);
+                if (childNodes[i].parentNode !== null) {
+                    childNodes[i].parentNode.removeChild(childNodes[i]);
+                }
             }
         }
     }
