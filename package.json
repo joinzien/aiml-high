@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gleuch/aiml-high.git"
+    "url": "https://github.com/joinzien/aiml-high.git"
   },
   "keywords": [
     "aiml",
@@ -22,9 +22,9 @@
   "author": "Greg Leuch",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gleuch/aiml-high/issues"
+    "url": "https://github.com/joinzien/aiml-high/issues"
   },
-  "homepage": "https://github.com/gleuch/aiml-high",
+  "homepage": "https://github.com/joinzien/aiml-high",
   "maintainers": [
     "Greg Leuch <contact@gleu.ch>"
   ]
