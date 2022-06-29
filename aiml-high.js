@@ -1,4 +1,4 @@
-DOMParser = require('xmldom').DOMParser;
+DOMParser = require('@xmldom').DOMParser;
 fs = require('fs');
 
 var storedVariableValues = {};
