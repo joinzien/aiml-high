@@ -81,8 +81,12 @@ var aimlHigh = function(storedVariableValuesParam, lastAnswer){
         domArray = [];
         findAnswerAttempts = 0;
     };
-};
 
+    //restart the DOM in order to load a new AIML File
+    this.saveState = function(){    
+        return storedVariableValues;
+    };
+};
 
 // remove string control characters (like line-breaks '\r\n', leading / trailing spaces etc.)
 var cleanStringFormatCharacters = function(str){
