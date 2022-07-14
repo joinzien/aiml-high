@@ -17,6 +17,19 @@ var previousThinkTag = false;
 
 var aimlHigh = function (storedVariableValuesParam, lastAnswer) {
     var self = this;
+
+    // Set all the defaults on startup
+    lastWildCardValue = '';
+    wildCardArray = [];
+    
+    domArray = [];
+    
+    isAIMLFileLoaded = false;
+    findAnswerAttempts = 0;
+    
+    previousAnswer = '';
+    previousThinkTag = false;
+
     storedVariableValues = storedVariableValuesParam;
     if (lastAnswer !== undefined) {
         previousAnswer = lastAnswer;
@@ -86,7 +99,7 @@ var aimlHigh = function (storedVariableValuesParam, lastAnswer) {
     //restart the DOM in order to load a new AIML File
     this.saveState = function () {
         return storedVariableValues;
-    };
+    }; 
 };
 
 // remove string control characters (like line-breaks '\r\n', leading / trailing spaces etc.)
