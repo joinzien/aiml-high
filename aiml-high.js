@@ -8,9 +8,7 @@ var wildCardArray = [];
 
 var domArray = [];
 
-var numberOfAIMLFileLoaded = 0;
-var numberOfAIMLFilesToLoad = 0;
-
+var isAIMLFileLoaded = false;
 var findAnswerAttempts = 0;
 var maxFindAnswerAttempts = 10;
 
@@ -20,14 +18,24 @@ var previousThinkTag = false;
 var aimlHigh = function (storedVariableValuesParam, lastAnswer) {
     var self = this;
 
+    // Set all the defaults on startup
+    lastWildCardValue = '';
+    wildCardArray = [];
+    
+    domArray = [];
+    
+    isAIMLFileLoaded = false;
+    findAnswerAttempts = 0;
+    
+    previousAnswer = '';
+    previousThinkTag = false;
+
     storedVariableValues = storedVariableValuesParam;
     if (lastAnswer !== undefined) {
         previousAnswer = lastAnswer;
     }
 
     this.loadFiles = function (files) {
-        numberOfAIMLFilesToLoad += files.length;
-
         files.forEach(function (file) {
             fs.readFile(file, 'utf8', function (err, data) {
                 if (err) {
@@ -44,12 +52,12 @@ var aimlHigh = function (storedVariableValuesParam, lastAnswer) {
         }
         var dom = new DOMParser().parseFromString(str.toString());
         domArray.push(dom);
-        numberOfAIMLFileLoaded++;
+        isAIMLFileLoaded = true;
     };
 
     this.findAnswer = function (clientInput, cb) {
         //check if all AIML files have been loaded. If not, call this method again after a delay
-        if (numberOfAIMLFileLoaded >= numberOfAIMLFilesToLoad) {
+        if (isAIMLFileLoaded) {
             wildCardArray = [];
             var result = '';
             for (var i = 0; i < domArray.length; i++) {
