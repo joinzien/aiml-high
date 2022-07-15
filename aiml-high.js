@@ -10,6 +10,7 @@ var domArray = [];
 
 var isAIMLFileLoaded = false;
 var numberOfAIMLFilesLoaded = 0;
+var numberOfAIMLFilesToLoad = 0;
 var findAnswerAttempts = 0;
 const maxFindAnswerAttempts = 10;
 
@@ -26,15 +27,14 @@ var aimlHigh = function (storedVariableValuesParam, lastAnswer) {
 
     this.loadFiles = function (files) {
         files.forEach(function (file) {
+            numberOfAIMLFilesToLoad++;
+
             fs.readFile(file, 'utf8', function (err, data) {
                 if (err) {
                     return console.log(err);
                 }
                 self.loadFromString(data);
-            });
-
-            numberOfAIMLFilesLoaded++;
-
+            });           
         });
     };
 
@@ -44,12 +44,13 @@ var aimlHigh = function (storedVariableValuesParam, lastAnswer) {
         }
         var dom = new DOMParser().parseFromString(str.toString());
         domArray.push(dom);
-        isAIMLFileLoaded = true;
+
+        numberOfAIMLFilesLoaded++;
     };
 
     this.findAnswer = function (clientInput, cb) {
         //check if all AIML files have been loaded. If not, call this method again after a delay
-        if (isAIMLFileLoaded) {
+        if (numberOfAIMLFilesLoaded >= numberOfAIMLFilesToLoad) {
             wildCardArray = [];
             var result = '';
             for (var i = 0; i < domArray.length; i++) {
