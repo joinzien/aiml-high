@@ -9,8 +9,9 @@ var wildCardArray = [];
 var domArray = [];
 
 var isAIMLFileLoaded = false;
+var numberOfAIMLFilesLoaded = 0;
 var findAnswerAttempts = 0;
-var maxFindAnswerAttempts = 10;
+const maxFindAnswerAttempts = 10;
 
 var previousAnswer = '';
 var previousThinkTag = false;
@@ -37,13 +38,16 @@ var aimlHigh = function (storedVariableValuesParam, lastAnswer) {
 
     this.loadFiles = function (files) {
         files.forEach(function (file) {
-            console.log(file);
             fs.readFile(file, 'utf8', function (err, data) {
                 if (err) {
                     return console.log(err);
                 }
                 self.loadFromString(data);
             });
+
+            numberOfAIMLFilesLoaded++;
+            console.log(file);
+            condsole.log(numberOfAIMLFilesLoaded);
         });
     };
 
