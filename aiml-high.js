@@ -8,7 +8,6 @@ var wildCardArray = [];
 
 var domArray = [];
 
-var isAIMLFileLoaded = false;
 var numberOfAIMLFilesLoaded = 0;
 var numberOfAIMLFilesToLoad = 0;
 var findAnswerAttempts = 0;
