@@ -47,7 +47,7 @@ var aimlHigh = function (storedVariableValuesParam, lastAnswer) {
 
             numberOfAIMLFilesLoaded++;
             console.log(file);
-            condsole.log(numberOfAIMLFilesLoaded);
+            console.log(numberOfAIMLFilesLoaded);
         });
     };
 
