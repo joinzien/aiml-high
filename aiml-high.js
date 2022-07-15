@@ -19,18 +19,6 @@ var previousThinkTag = false;
 var aimlHigh = function (storedVariableValuesParam, lastAnswer) {
     var self = this;
 
-    // Set all the defaults on startup
-    lastWildCardValue = '';
-    wildCardArray = [];
-    
-    domArray = [];
-    
-    isAIMLFileLoaded = false;
-    findAnswerAttempts = 0;
-    
-    previousAnswer = '';
-    previousThinkTag = false;
-
     storedVariableValues = storedVariableValuesParam;
     if (lastAnswer !== undefined) {
         previousAnswer = lastAnswer;
@@ -46,8 +34,7 @@ var aimlHigh = function (storedVariableValuesParam, lastAnswer) {
             });
 
             numberOfAIMLFilesLoaded++;
-            console.log(file);
-            console.log(numberOfAIMLFilesLoaded);
+
         });
     };
 
