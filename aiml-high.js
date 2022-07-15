@@ -37,6 +37,7 @@ var aimlHigh = function (storedVariableValuesParam, lastAnswer) {
 
     this.loadFiles = function (files) {
         files.forEach(function (file) {
+            console.log(file);
             fs.readFile(file, 'utf8', function (err, data) {
                 if (err) {
                     return console.log(err);
