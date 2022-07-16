@@ -92,6 +92,11 @@ var aimlHigh = function (storedVariableValuesParam, lastAnswer) {
     this.saveState = function () {
         return storedVariableValues;
     }; 
+
+    // return the previous answer
+    this.savePreviousAnswer = function () {
+        return previousAnswer;
+    };    
 };
 
 // remove string control characters (like line-breaks '\r\n', leading / trailing spaces etc.)
