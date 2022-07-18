@@ -35,6 +35,8 @@ var aimlHigh = function (storedVariableValuesParam, lastAnswer) {
                 self.loadFromString(data);
             });
         });
+
+        console.log(numberOfAIMLFilesLoaded);
     };
 
     this.loadFromString = function (str) {
