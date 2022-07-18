@@ -175,7 +175,7 @@ const findCorrectCategory = function (clientInput, domCategories) {
     for (let i = 0; i < categoryChildNodes.length; i++) {
       if (categoryChildNodes[i].tagName === "that") {
         // if the previous answer of the bot does not match the that-tag text, then return undefined!
-        if (categoryChildNodes[i].childNodes[0].nodeValue != previousAnswer) {
+        if (categoryChildNodes[i].childNodes[0].nodeValue !== previousAnswer) {
           return false;
         } else {
           return true;
@@ -389,7 +389,7 @@ const findCorrectCategory = function (clientInput, domCategories) {
       } else if (innerNodes[i].tagName === "condition") {
         // condition tag specification: list condition tag
         if (!innerNodes[i].hasAttribute("name")) {
-          if (innerNodes[i].childNodes.length == 0) {
+          if (innerNodes[i].childNodes.length === 0) {
             return undefined;
           }
           let child;
@@ -454,13 +454,13 @@ const checkIfMessageMatchesPattern = function (userInput, patternText) {
 
   // add one with the text in function 'convertWildcardToRegex' here a space is added before and after the user input
   // to prevent false matching
-  if (userInput.charAt(0) != " ") {
+  if (userInput.charAt(0) !== " ") {
     userInput = " " + userInput;
   }
 
   const lastCharacterPosition = userInput.length - 1;
   const lastCharacter = userInput.charAt(lastCharacterPosition);
-  if (lastCharacter != " ") {
+  if (lastCharacter !== " ") {
     userInput = userInput + " ";
   }
 
@@ -491,7 +491,7 @@ const convertWildcardToRegex = function (text) {
   // add a space before and after the pattern text (THIS IS LATER ALSO DONE FOR THE USER INPUT)
   // prevents false matchings
   // e.g. (HI as regex also matches HIM or HISTORY, but <space>HI</space> does only match <space>HI</space>)
-  if (firstCharacter != "*" && firstCharacter != "_") {
+  if (firstCharacter !== "*" && firstCharacter !== "_") {
     text = " " + text;
   }
   const lastCharacterPosition = text.length - 1;
@@ -505,7 +505,7 @@ const convertWildcardToRegex = function (text) {
     "[A-Z|0-9|\\s]*[A-Z|0-9|*|-]*[A-Z|0-9]*[!|.|?|\\s]*"
   );
 
-  if (lastCharacter != "*") {
+  if (lastCharacter !== "*") {
     //        text = text + " ";
     // pattern should also match when user inputs ends with a space, ?, ! or .
     modifiedText = modifiedText + "[\\s|?|!|.]*";
@@ -538,9 +538,9 @@ const getWildCardValue = function (userInput, patternText) {
     let wildCardArrayIndex = 0;
     for (let i = 0; i < wildCardInput.length; i++) {
       if (
-        wildCardInput[i] != "" &&
-        wildCardInput[i] != " " &&
-        wildCardInput != undefined
+        wildCardInput[i] !== "" &&
+        wildCardInput[i] !== " " &&
+        wildCardInput !== undefined
       ) {
         let wildCard = wildCardInput[i];
         let wildCardLastCharIndex = wildCard.length - 1;
