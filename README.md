@@ -1,11 +1,5 @@
 # aiml-high
-
-[![npm version](https://badge.fury.io/js/aiml-high.svg)](https://badge.fury.io/js/aiml-high)
-
-
-> AIML Interpreter written in node.js. Built on [aimlinterpreter](https://www.npmjs.com/package/aimlinterpreter).
->
->aiml-high is a module that allows you to parse AIML files and to find the correct answer to a given message.
+AIML Interpreter written in node.js. Built on [aimlinterpreter](https://www.npmjs.com/package/aimlinterpreter). aiml-high is a module that allows you to parse AIML files and to find the correct answer to a given message.
 
 
 ## Installation
@@ -34,7 +28,7 @@ Furthermore, the object has a function called `findAnswer(clientInput, cb)` whic
 
 ```
 aimlHigh = require('./aiml-high');
-var interpreter = new aimlHigh({name:'Bot', age:'42'}, 'Goodbye');
+var interpreter = new aimlHigh({name:'Bot', age:'42'}, {}, 'Goodbye');
 interpreter.loadFiles(['./test.aiml.xml']);
 
 var callback = function(answer, wildCardArray, input){
