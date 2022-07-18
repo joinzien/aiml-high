@@ -100,14 +100,14 @@ const aimlHigh = function (
 };
 
 // remove string control characters (like line-breaks '\r\n', leading / trailing spaces etc.)
-var cleanStringFormatCharacters = function (str) {
+const cleanStringFormatCharacters = function (str) {
   let cleanedStr = str.replace(/\r\n/gi, "");
   cleanedStr = cleanedStr.replace(/^\s*/, "");
   cleanedStr = cleanedStr.replace(/\s*$/, "");
   return cleanedStr;
 };
 
-var cleanDom = function (childNodes) {
+const cleanDom = function (childNodes) {
   for (let i = 0; i < childNodes.length; i++) {
     if (
       childNodes[i].hasOwnProperty("nodeValue") &
@@ -132,11 +132,11 @@ var cleanDom = function (childNodes) {
   return childNodes;
 };
 
-var findCorrectCategory = function (clientInput, domCategories) {
+const findCorrectCategory = function (clientInput, domCategories) {
   // indexOfSetTagAmountWithWildCard indicates how many sets with wildcard occur so that those sets store the correct wildcard value
   let indexOfSetTagAmountWithWildCard = 0;
 
-  var travereseThroughDomToFindMatchingPattern = function (categories) {
+  const travereseThroughDomToFindMatchingPattern = function (categories) {
     for (let i = 0; i < categories.length; i++) {
       // sort past <aiml> document tag
       if (categories[i].tagName === "aiml") {
@@ -146,7 +146,7 @@ var findCorrectCategory = function (clientInput, domCategories) {
       } else if (categories[i].tagName === "category") {
         // traverse through the dom
         // text gets the value of the current pattern node
-        var text = travereseThroughDomToFindMatchingPattern(
+        const text = travereseThroughDomToFindMatchingPattern(
           categories[i].childNodes
         );
 
@@ -157,7 +157,7 @@ var findCorrectCategory = function (clientInput, domCategories) {
           // If it does not match, continue the traversion through the AIML file
           const isMatchingThat = checkForThatMatching(categories[i].childNodes);
           if (isMatchingThat) {
-            var text = findFinalTextInTemplateNode(categories[i].childNodes);
+            const text = findFinalTextInTemplateNode(categories[i].childNodes);
             if (text) {
               return text;
             }
@@ -165,13 +165,13 @@ var findCorrectCategory = function (clientInput, domCategories) {
           }
         }
       } else if (categories[i].tagName === "pattern") {
-        var text = resolveChildNodesInPatternNode(categories[i].childNodes);
+        const text = resolveChildNodesInPatternNode(categories[i].childNodes);
         return text;
       }
     }
   };
 
-  var checkForThatMatching = function (categoryChildNodes) {
+  const checkForThatMatching = function (categoryChildNodes) {
     for (let i = 0; i < categoryChildNodes.length; i++) {
       if (categoryChildNodes[i].tagName === "that") {
         // if the previous answer of the bot does not match the that-tag text, then return undefined!
@@ -186,7 +186,7 @@ var findCorrectCategory = function (clientInput, domCategories) {
     return true;
   };
 
-  var resolveChildNodesInPatternNode = function (patternChildNodes) {
+  const resolveChildNodesInPatternNode = function (patternChildNodes) {
     let text = "";
 
     for (let i = 0; i < patternChildNodes.length; i++) {
@@ -214,8 +214,8 @@ var findCorrectCategory = function (clientInput, domCategories) {
     return text;
   };
 
-  var findFinalTextInTemplateNode = function (childNodesOfTemplate) {
-    var text = "";
+  const findFinalTextInTemplateNode = function (childNodesOfTemplate) {
+    let text = "";
 
     // traverse through template nodes until final text is found
     // return it then to very beginning
@@ -234,7 +234,7 @@ var findCorrectCategory = function (clientInput, domCategories) {
         const sraiText =
           "" + findFinalTextInTemplateNode(childNodesOfTemplate[i].childNodes);
         // call findCorrectCategory again to find the category that belongs to the srai node
-        var text = findCorrectCategory(sraiText, domCategories);
+        const text = findCorrectCategory(sraiText, domCategories);
         return text;
       } else if (childNodesOfTemplate[i].tagName === "li") {
         return findFinalTextInTemplateNode(childNodesOfTemplate[i].childNodes);
@@ -280,7 +280,7 @@ var findCorrectCategory = function (clientInput, domCategories) {
     }
   };
 
-  var resolveSpecialNodes = function (innerNodes) {
+  const resolveSpecialNodes = function (innerNodes) {
     let text = "";
     // concatenate string of all node children - normal text, bot tags, get tags, set tags...
     for (let i = 0; i < innerNodes.length; i++) {
@@ -334,10 +334,10 @@ var findCorrectCategory = function (clientInput, domCategories) {
         text =
           text + resolveSpecialNodes(innerNodes[i].childNodes).toLowerCase();
       } else if (innerNodes[i].tagName === "sentence") {
-        var formalText = resolveSpecialNodes(innerNodes[i].childNodes);
+        const formalText = resolveSpecialNodes(innerNodes[i].childNodes);
         text = text + formalText.charAt(0).toUpperCase() + formalText.slice(1);
       } else if (innerNodes[i].tagName === "formal") {
-        var formalText = resolveSpecialNodes(innerNodes[i].childNodes);
+        const formalText = resolveSpecialNodes(innerNodes[i].childNodes);
         text =
           text +
           formalText
@@ -352,7 +352,7 @@ var findCorrectCategory = function (clientInput, domCategories) {
         previousThinkTag = true;
         text = text + resolveSpecialNodes(innerNodes[i].childNodes);
       } else if (innerNodes[i].tagName === "sr") {
-        var result;
+        let result;
 
         // for-loop to go through all loaded AIML files
         for (let j = 0; j < domArray.length; j++) {
@@ -392,8 +392,8 @@ var findCorrectCategory = function (clientInput, domCategories) {
           if (innerNodes[i].childNodes.length == 0) {
             return undefined;
           }
-          var child;
-          for (var c in innerNodes[i].childNodes) {
+          let child;
+          for (const c in innerNodes[i].childNodes) {
             child = innerNodes[i].childNodes[c];
             if (child.tagName === "li") {
               if (
@@ -417,8 +417,8 @@ var findCorrectCategory = function (clientInput, domCategories) {
         }
         // condition tag specification: single name list condition tags
         else if (innerNodes[i].childNodes.length > 0) {
-          var child;
-          for (var c in innerNodes[i].childNodes) {
+          let child;
+          for (const c in innerNodes[i].childNodes) {
             child = innerNodes[i].childNodes[c];
             if (child.tagName === "li") {
               if (
@@ -448,7 +448,7 @@ var findCorrectCategory = function (clientInput, domCategories) {
   return travereseThroughDomToFindMatchingPattern(domCategories);
 };
 
-var checkIfMessageMatchesPattern = function (userInput, patternText) {
+const checkIfMessageMatchesPattern = function (userInput, patternText) {
   // convert wildcards in of the pattern node into a regex that matches every char
   const regexPattern = convertWildcardToRegex(patternText);
 
@@ -486,13 +486,13 @@ var checkIfMessageMatchesPattern = function (userInput, patternText) {
   }
 };
 
-var convertWildcardToRegex = function (text) {
+const convertWildcardToRegex = function (text) {
   const firstCharacter = text.charAt(0);
   // add a space before and after the pattern text (THIS IS LATER ALSO DONE FOR THE USER INPUT)
   // prevents false matchings
   // e.g. (HI as regex also matches HIM or HISTORY, but <space>HI</space> does only match <space>HI</space>)
   if (firstCharacter != "*" && firstCharacter != "_") {
-    var text = " " + text;
+    const text = " " + text;
   }
   const lastCharacterPosition = text.length - 1;
   const lastCharacter = text.charAt(lastCharacterPosition);
@@ -514,7 +514,7 @@ var convertWildcardToRegex = function (text) {
   return modifiedText;
 };
 
-var getWildCardValue = function (userInput, patternText) {
+const getWildCardValue = function (userInput, patternText) {
   // get all strings of the pattern that are divided by a *
   // e.g. WHAT IS THE RELATION BETWEEN * AND * -> [WHAT IS THE RELATION BETWEEN , AND ]
   const replaceArray = patternText.split("*");
@@ -522,7 +522,7 @@ var getWildCardValue = function (userInput, patternText) {
 
   if (replaceArray.length > 1) {
     // replace the string of the userInput which is fixed by the pattern
-    for (var i = 0; i < replaceArray.length; i++) {
+    for (let i = 0; i < replaceArray.length; i++) {
       wildCardInput = wildCardInput.replace(
         new RegExp(replaceArray[i], "i"),
         "|"
@@ -536,7 +536,7 @@ var getWildCardValue = function (userInput, patternText) {
     // split function can create an array which also includes spaces etc. -> e.g. [TIM, " ", "", STRUPPI, " "]
     // we just want the information
     let wildCardArrayIndex = 0;
-    for (var i = 0; i < wildCardInput.length; i++) {
+    for (let i = 0; i < wildCardInput.length; i++) {
       if (
         wildCardInput[i] != "" &&
         wildCardInput[i] != " " &&
