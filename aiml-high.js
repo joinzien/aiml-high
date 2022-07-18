@@ -110,7 +110,7 @@ const cleanStringFormatCharacters = function (str) {
 const cleanDom = function (childNodes) {
   for (let i = 0; i < childNodes.length; i++) {
     if (
-      childNodes[i].hasOwnProperty("nodeValue") &
+      childNodes[i].prototype.hasOwnProperty.call("nodeValue") &
       (typeof childNodes[i].nodeValue === "string")
     ) {
       // remove all nodes of type 'text' when they just contain '\r\n'. This indicates line break in the AIML file
@@ -124,7 +124,7 @@ const cleanDom = function (childNodes) {
 
   // traverse through whole tree by recursive calls
   for (let j = 0; j < childNodes.length; j++) {
-    if (childNodes[j].hasOwnProperty("childNodes")) {
+    if (childNodes[j].prototype.hasOwnProperty.call("childNodes")) {
       childNodes[j].childNodes = cleanDom(childNodes[j].childNodes);
     }
   }
