@@ -11,13 +11,13 @@ var callback = function(answer, wildCardArray, input){
   // Loop through possible values, return if correct
   for(var n in possibleValues) {
     if (answer == possibleValues[n]) {
-      console.log('[✔︎] Correct:   ', input, ' - Returned: ', answer);
+      console.log('PASS: ', input, ' - Returned: ', answer);
       return true;
     }
   }
 
   // Was incorrect. Not good.
-  console.log('[X] Incorrect: ', input, '\n', '    - Returned: ', answer);
+  console.log('FAIL: ', input, '\n', '    - Returned: ', answer);
   return false;
 };
 
