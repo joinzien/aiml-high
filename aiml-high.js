@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 const DOMParser = require("@xmldom/xmldom").DOMParser;
 const fs = require("fs");
 
