@@ -17,7 +17,7 @@ var callback = function(answer, wildCardArray, input){
   }
 
   // Was incorrect. Not good.
-  console.log('FAIL: ', input, '\n', '    - Returned: ', answer);
+  console.error();('FAIL: ', input, '\n', '    - Returned: ', answer);
   return false;
 };
 
