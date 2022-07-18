@@ -4,10 +4,20 @@
   "description": "Interpret AIML files using node.",
   "main": "aiml-high.js",
   "dependencies": {
-    "@xmldom/xmldom": "^0.8.2"
+    "@xmldom/xmldom": "^0.8.2",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",    
+    "eslint": "^8.19.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.0.0"  
   },
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "lint": "npx eslint '**/*.{js,ts}' --fix"
   },
   "repository": {
     "type": "git",
