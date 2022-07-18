@@ -477,7 +477,7 @@ const checkIfMessageMatchesPattern = function (userInput, patternText) {
     ) {
       // if patternText contained a wild card, get the user input that were put into this wild card
       // use original patternText (* is not replaced by regex!)
-      const information = getWildCardValue(userInput, patternText);
+      getWildCardValue(userInput, patternText);
 
       return true;
     }
