@@ -1,6 +1,6 @@
 {
   "name": "aiml-high",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Interpret AIML files using node.",
   "main": "aiml-high.js",
   "dependencies": {
@@ -36,6 +36,6 @@
   },
   "homepage": "https://github.com/joinzien/aiml-high",
   "maintainers": [
-    "Greg Leuch <contact@gleu.ch>"
+    "Zien <office@zien.io>"
   ]
 }
