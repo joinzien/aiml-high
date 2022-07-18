@@ -31,8 +31,6 @@ var aimlHigh = function (storedVariableValuesParam, lastAnswer) {
             const data = fs.readFileSync(file,{encoding:'utf8', flag:'r'});
             self.loadFromString(data);
         });
-
-        console.log(numberOfAIMLFilesLoaded);
     };
 
     this.loadFromString = function (str) {
