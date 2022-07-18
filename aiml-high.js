@@ -2,6 +2,7 @@ DOMParser = require('@xmldom/xmldom').DOMParser;
 fs = require('fs');
 
 var storedVariableValues = {};
+var botAttributes = {};
 
 var lastWildCardValue = '';
 var wildCardArray = [];
@@ -16,9 +17,10 @@ const maxFindAnswerAttempts = 10;
 var previousAnswer = '';
 var previousThinkTag = false;
 
-var aimlHigh = function (storedVariableValuesParam, lastAnswer) {
+var aimlHigh = function (botAttributesParam, storedVariableValuesParam, lastAnswer) {
     var self = this;
 
+    botAttributes = botAttributesParam;
     storedVariableValues = storedVariableValuesParam;
     if (lastAnswer !== undefined) {
         previousAnswer = lastAnswer;
@@ -183,7 +185,11 @@ var findCorrectCategory = function (clientInput, domCategories) {
         var text = '';
 
         for (var i = 0; i < patternChildNodes.length; i++) {
-            if (patternChildNodes[i].tagName === 'get') {
+            if(patternChildNodes[i].tagName === 'bot'){
+                // console.log(patternChildNodes[i].getAttribute('name'),botAttributes)
+                text = text + (botAttributes[patternChildNodes[i].getAttribute('name')] || '').toUpperCase();
+            }
+            else if(patternChildNodes[i].tagName === 'get'){
                 text = text + (storedVariableValues[patternChildNodes[i].getAttribute('name')] || '').toUpperCase();
             }
             else if (patternChildNodes[i].tagName === 'set') {
@@ -278,7 +284,11 @@ var findCorrectCategory = function (clientInput, domCategories) {
         var text = '';
         // concatenate string of all node children - normal text, bot tags, get tags, set tags...
         for (var i = 0; i < innerNodes.length; i++) {
-            if (innerNodes[i].tagName === 'get') {
+            if(innerNodes[i].tagName === 'bot'){
+                //replace bot tags by the belonging bot attribute value
+                text = text + botAttributes[innerNodes[i].getAttribute('name')];
+            }
+            else if (innerNodes[i].tagName === 'get') {
                 // replace get tag by belonging variable value
                 var getAux = storedVariableValues[innerNodes[i].getAttribute('name')];
                 if (getAux === undefined) {

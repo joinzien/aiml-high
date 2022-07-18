@@ -2,7 +2,7 @@ aimlHigh = require('./aiml-high');
 
 var botAttributes = {name:'WireInterpreter', age:'42'};
 
-var interpret = new aimlHigh(botAttributes);
+var interpret = new aimlHigh(botAttributes, {});
 interpret.loadFiles(['./test.aiml.xml']);
 
 var callback = function(answer, wildCardArray, input){
