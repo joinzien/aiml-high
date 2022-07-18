@@ -264,8 +264,7 @@ const findCorrectCategory = function (clientInput, domCategories) {
       } else if (childNodesOfTemplate[i].tagName === "star") {
         text = resolveSpecialNodes(childNodesOfTemplate);
         return text;
-      } else if (childNodesOfTemplate[i].tagName === "that") {
-      } else {
+      } else if (childNodesOfTemplate[i].tagName !== "that") {
         // this is the text of template node
         // after all special functions (bot, get, set,...) were resolved
         // return that text
