@@ -1,5 +1,5 @@
-DOMParser = require("@xmldom/xmldom").DOMParser;
-fs = require("fs");
+const DOMParser = require("@xmldom/xmldom").DOMParser;
+const fs = require("fs");
 
 let storedVariableValues = {};
 let botAttributes = {};
