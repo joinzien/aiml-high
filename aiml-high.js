@@ -492,7 +492,7 @@ const convertWildcardToRegex = function (text) {
   // prevents false matchings
   // e.g. (HI as regex also matches HIM or HISTORY, but <space>HI</space> does only match <space>HI</space>)
   if (firstCharacter != "*" && firstCharacter != "_") {
-    const text = " " + text;
+    text = " " + text;
   }
   const lastCharacterPosition = text.length - 1;
   const lastCharacter = text.charAt(lastCharacterPosition);
