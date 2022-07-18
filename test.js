@@ -1,8 +1,8 @@
-aimlHigh = require("./aiml-high");
+const AimlHigh = require("./aiml-high");
 
 const botAttributes = { name: "WireInterpreter", age: "42" };
 
-const interpret = new aimlHigh(botAttributes, {});
+const interpret = new AimlHigh(botAttributes, {});
 interpret.loadFiles(["./test.aiml.xml"]);
 
 const callback = function (answer, wildCardArray, input) {
@@ -10,15 +10,14 @@ const callback = function (answer, wildCardArray, input) {
 
   // Loop through possible values, return if correct
   for (const n in possibleValues) {
-    if (answer == possibleValues[n]) {
+    if (answer === possibleValues[n]) {
       console.log("PASS: ", input, " - Returned: ", answer);
       return true;
     }
   }
 
   // Was incorrect. Not good.
-  console.error();
-  "FAIL: ", input, "\n", "    - Returned: ", answer;
+  console.error("FAIL: ", input, "\n", "    - Returned: ", answer);
   return false;
 };
 
