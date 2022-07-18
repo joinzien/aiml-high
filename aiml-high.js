@@ -28,12 +28,8 @@ var aimlHigh = function (storedVariableValuesParam, lastAnswer) {
         files.forEach(function (file) {
             numberOfAIMLFilesToLoad++;
 
-            fs.readFile(file, 'utf8', function (err, data) {
-                if (err) {
-                    return console.log(err);
-                }
-                self.loadFromString(data);
-            });
+            const data = fs.readFileSync(file,{encoding:'utf8', flag:'r'});
+            self.loadFromString(data);
         });
 
         console.log(numberOfAIMLFilesLoaded);
