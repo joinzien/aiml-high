@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: MIT
 
+"use strict";
+
 const AimlHigh = require("./aiml-high");
 
 const botAttributes = { name: "WireInterpreter", age: "42" };
