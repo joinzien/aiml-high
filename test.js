@@ -4,6 +4,8 @@
 
 const AimlHigh = require("./aiml-high");
 
+const testTimeout = 1000;
+
 const botAttributes = { name: "WireInterpreter", age: "42" };
 
 const interpret = new AimlHigh(botAttributes, {});
@@ -219,4 +221,4 @@ setTimeout(function () {
   );
   // interpret.findAnswer('You feel hAPPy', callback.bind('I feel HAPPy!')); // INTENTIONAL ERROR CHECKING
   // interpret.findAnswer('You feel FINEeeeee', callback.bind('I feel FINEEEEEE!')); // INTENTIONAL ERROR CHECKING
-}, 1000);
+}, testTimeout);
