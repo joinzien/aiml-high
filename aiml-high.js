@@ -97,7 +97,12 @@ const aimlHigh = function (
     storedVariableValues[name] = value;
   };
 
-  // set a stored state value
+  // Remove a state value
+  this.getState = function (name) {
+    return storedVariableValues[name];
+  };
+
+  // Remove a state value
   this.removeState = function (name) {
     delete storedVariableValues[name];
   };
