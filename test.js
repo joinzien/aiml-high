@@ -21,7 +21,7 @@ setTimeout(function () {
 
   const afterState = JSON.parse(JSON.stringify(interpret.saveState()));
 
-  //const variableValue = getState(variableName)
+  const actualVariableValue = interpret.getState(variableName);
 
   interpret.removeState(variableName);
 
@@ -34,6 +34,12 @@ setTimeout(function () {
     console.log("PASS:  saveState");
   } else {
     console.log("FAIL  saveState");
+  }
+
+  if (actualVariableValue === variableValue) {
+    console.log("PASS:  getState");
+  } else {
+    console.log("FAIL  getState");
   }
 
   if (JSON.stringify(afterState) === JSON.stringify(populatedState)) {
