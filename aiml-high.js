@@ -92,6 +92,16 @@ const aimlHigh = function (
     findAnswerAttempts = 0;
   };
 
+  // set a stored state value
+  this.updateState = function (name, value) {
+    storedVariableValues[name] = value;
+  };
+
+  // set a stored state value
+  this.removeState = function (name) {
+    delete storedVariableValues[name];
+  };
+
   // return the stored variables
   this.saveState = function () {
     return storedVariableValues;

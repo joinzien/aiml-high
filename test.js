@@ -4,10 +4,46 @@
 
 const AimlHigh = require("./aiml-high");
 
+const testTimeout = 1000;
+
 const botAttributes = { name: "WireInterpreter", age: "42" };
 
 const interpret = new AimlHigh(botAttributes, {});
 interpret.loadFiles(["./test.aiml.xml"]);
+
+setTimeout(function () {
+  // Loading and saving variables
+  const beforeState = JSON.parse(JSON.stringify(interpret.saveState()));
+
+  interpret.updateState("Variable", "Value");
+
+  const afterState = JSON.parse(JSON.stringify(interpret.saveState()));
+
+  interpret.removeState("Variable");
+
+  const cleanedState = JSON.parse(JSON.stringify(interpret.saveState()));
+
+  const emptyState = {};
+  const populatedState = { Variable: "Value" };
+
+  if (JSON.stringify(beforeState) === JSON.stringify(emptyState)) {
+    console.log("PASS:  saveState");
+  } else {
+    console.log("FAIL  saveState");
+  }
+
+  if (JSON.stringify(afterState) === JSON.stringify(populatedState)) {
+    console.log("PASS:  updateState");
+  } else {
+    console.log("FAIL  updateState");
+  }
+
+  if (JSON.stringify(cleanedState) === JSON.stringify(emptyState)) {
+    console.log("PASS:  removeState");
+  } else {
+    console.log("FAIL  removeState");
+  }
+}, testTimeout);
 
 const callback = function (answer, wildCardArray, input) {
   const possibleValues = this;
@@ -219,4 +255,4 @@ setTimeout(function () {
   );
   // interpret.findAnswer('You feel hAPPy', callback.bind('I feel HAPPy!')); // INTENTIONAL ERROR CHECKING
   // interpret.findAnswer('You feel FINEeeeee', callback.bind('I feel FINEEEEEE!')); // INTENTIONAL ERROR CHECKING
-}, 1000);
+}, testTimeout);
