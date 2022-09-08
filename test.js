@@ -5,6 +5,8 @@
 const AimlHigh = require("./aiml-high");
 
 const testTimeout = 1000;
+const variableName = "Variable";
+const variableValue = "Value";
 
 const botAttributes = { name: "WireInterpreter", age: "42" };
 
@@ -15,11 +17,13 @@ setTimeout(function () {
   // Loading and saving variables
   const beforeState = JSON.parse(JSON.stringify(interpret.saveState()));
 
-  interpret.updateState("Variable", "Value");
+  interpret.updateState(variableName, variableValue);
 
   const afterState = JSON.parse(JSON.stringify(interpret.saveState()));
 
-  interpret.removeState("Variable");
+  //const variableValue = getState(variableName)
+
+  interpret.removeState(variableName);
 
   const cleanedState = JSON.parse(JSON.stringify(interpret.saveState()));
 
