@@ -13,3 +13,4 @@ yarn.lock
 .pnp.*
 .yarn/install-state.gz
 .yarn/unplugged
+.pnp.*
