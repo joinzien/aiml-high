@@ -6,7 +6,10 @@
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.30.0",
     "@typescript-eslint/parser": "^5.30.0",
-    "@xmldom/xmldom": "^0.8.2",
+    "@xmldom/xmldom": "^0.8.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.5",
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0",
@@ -15,12 +18,11 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.0.0",
-    "prettier": "^2.0.0",
-    "typescript": "^4.3.5"
+    "prettier": "^2.0.0"
   },
   "scripts": {
     "test": "node test.js",
-    "lint": "npx eslint '**/*.{js,ts}' --fix"
+    "lint": "eslint '**/*.{js,ts}' --fix"
   },
   "repository": {
     "type": "git",
@@ -40,5 +42,6 @@
   "homepage": "https://github.com/joinzien/aiml-high",
   "maintainers": [
     "Zien <office@zien.io>"
-  ]
+  ],
+  "packageManager": "yarn@3.2.4"
 }
