@@ -40,5 +40,6 @@
   "homepage": "https://github.com/joinzien/aiml-high",
   "maintainers": [
     "Zien <office@zien.io>"
-  ]
+  ],
+  "packageManager": "yarn@3.2.4"
 }

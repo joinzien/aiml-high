@@ -9,3 +9,7 @@ jspm_packages/
 .npm
 package-lock.json
 yarn.lock
+.yarn/cache
+.pnp.*
+.yarn/install-state.gz
+.yarn/unplugged
