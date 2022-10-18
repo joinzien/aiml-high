@@ -9,6 +9,7 @@
     "@xmldom/xmldom": "^0.8.2"
   },
   "devDependencies": {
+    "typescript": "^4.3.5",
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0",
