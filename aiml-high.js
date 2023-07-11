@@ -24,7 +24,7 @@ let previousThinkTag = false;
 const aimlHigh = function (
   botAttributesParam,
   storedVariableValuesParam,
-  lastAnswer
+  lastAnswer,
 ) {
   const self = this;
 
@@ -160,13 +160,13 @@ const findCorrectCategory = function (clientInput, domCategories) {
       // sort past <aiml> document tag
       if (categories[i].tagName === "aiml") {
         return travereseThroughDomToFindMatchingPattern(
-          categories[i].childNodes
+          categories[i].childNodes,
         );
       } else if (categories[i].tagName === "category") {
         // traverse through the dom
         // text gets the value of the current pattern node
         const text = travereseThroughDomToFindMatchingPattern(
-          categories[i].childNodes
+          categories[i].childNodes,
         );
 
         // check if the input of the user matches the pattern text
@@ -376,7 +376,7 @@ const findCorrectCategory = function (clientInput, domCategories) {
         for (let j = 0; j < domArray.length; j++) {
           result = findCorrectCategory(
             lastWildCardValue,
-            domArray[j].childNodes
+            domArray[j].childNodes,
           );
           // if in one of the dom trees a matching pattern was found, exit this inner loop
           if (result) {
@@ -391,7 +391,7 @@ const findCorrectCategory = function (clientInput, domCategories) {
           return s - Math.floor(s);
         })(Math.random());
         const randomNumber = Math.floor(
-          randomSeed * innerNodes[i].childNodes.length
+          randomSeed * innerNodes[i].childNodes.length,
         );
         text =
           text +
@@ -520,7 +520,7 @@ const convertWildcardToRegex = function (text) {
   // replace wildcard (*) by regex
   modifiedText = modifiedText.replace(
     /\*/g,
-    "[A-Z|0-9|\\s]*[A-Z|0-9|*|-]*[A-Z|0-9]*[!|.|?|\\s]*"
+    "[A-Z|0-9|\\s]*[A-Z|0-9|*|-]*[A-Z|0-9]*[!|.|?|\\s]*",
   );
 
   if (lastCharacter !== "*") {
@@ -543,7 +543,7 @@ const getWildCardValue = function (userInput, patternText) {
     for (let i = 0; i < replaceArray.length; i++) {
       wildCardInput = wildCardInput.replace(
         new RegExp(replaceArray[i], "i"),
-        "|"
+        "|",
       );
     }
     // split the wildCardInput string by | to differentiate multiple * inputs
