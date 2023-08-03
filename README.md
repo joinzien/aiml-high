@@ -4,7 +4,7 @@ AIML Interpreter written in node.js. Built on [aimlinterpreter](https://www.npmj
 
 ## Installation
 
-`npm install aiml-high`
+`yarn install aiml-high`
 
 
 ## Dependencies
